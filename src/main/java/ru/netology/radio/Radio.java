@@ -44,12 +44,10 @@ public class Radio {
     public void prevStation(int currentStation) {
         if (currentStation == 0) {
             currentStation = 9;
-        }
-        if (currentStation < 9) {
+        } else {
             currentStation = currentStation - 1;
         }
         this.currentStation = currentStation;
-
     }
 
     public void increaseVolume(int currentVolume) {
