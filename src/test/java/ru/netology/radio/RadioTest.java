@@ -87,10 +87,10 @@ public class RadioTest {
     void prevStationLimit() {
         Radio cond = new Radio();
 
-        cond.prevStation(8);
+        cond.prevStation(9);
 
         int actual = cond.getCurrentStation();
-        int expected = 7;
+        int expected = 8;
         assertEquals(expected, actual);
     }
 
