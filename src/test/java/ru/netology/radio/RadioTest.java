@@ -32,7 +32,7 @@ public class RadioTest {
     void currentStationOverLimit() {
         Radio cond = new Radio();
 
-        cond.setCurrentStation(11);
+        cond.setCurrentStation(10);
 
         int actual = cond.getCurrentStation();
         int expected = 0;
@@ -55,7 +55,7 @@ public class RadioTest {
     void nextStationOverLimit() {
         Radio cond = new Radio();
 
-        cond.setCurrentStation(10);
+        cond.setCurrentStation(9);
         cond.setNextStation();
 
         int actual = cond.getNextStation();
@@ -83,7 +83,7 @@ public class RadioTest {
         cond.setPrevStation();
 
         int actual = cond.getPrevStation();
-        int expected = 10;
+        int expected = 9;
         assertEquals(expected, actual);
     }
 
@@ -91,11 +91,11 @@ public class RadioTest {
     void prevStationLimit() {
         Radio cond = new Radio();
 
-        cond.setCurrentStation(10);
+        cond.setCurrentStation(9);
         cond.setPrevStation();
 
         int actual = cond.getPrevStation();
-        int expected = 9;
+        int expected = 8;
         assertEquals(expected, actual);
     }
 
@@ -125,7 +125,7 @@ public class RadioTest {
     void currentVolumeOverLimit() {
         Radio cond = new Radio();
 
-        cond.setCurrentVolume(11);
+        cond.setCurrentVolume(101);
 
         int actual = cond.getCurrentVolume();
         int expected = 0;
@@ -136,11 +136,11 @@ public class RadioTest {
     void increaseVolume() {
        Radio cond = new Radio();
 
-       cond.setCurrentVolume(8);
+       cond.setCurrentVolume(98);
        cond.setIncreaseVolume();
 
         int actual = cond.getIncreaseVolume();
-        int expected = 9;
+        int expected = 99;
         assertEquals(expected, actual);
     }
 
@@ -148,11 +148,11 @@ public class RadioTest {
     void increaseVolumeOverLimit() {
         Radio cond = new Radio();
 
-        cond.setCurrentVolume(9);
+        cond.setCurrentVolume(100);
         cond.setIncreaseVolume();
 
         int actual = cond.getIncreaseVolume();
-        int expected = 9;
+        int expected = 100;
         assertEquals(expected, actual);
     }
 
@@ -184,11 +184,11 @@ public class RadioTest {
     void reduceVolumeLimit() {
         Radio cond = new Radio();
 
-        cond.setCurrentVolume(9);
+        cond.setCurrentVolume(100);
         cond.setReduceVolume();
 
         int actual = cond.getReduceVolume();
-        int expected = 8;
+        int expected = 99;
         assertEquals(expected, actual);
     }
 
@@ -196,7 +196,7 @@ public class RadioTest {
     void reduceVolumeOverLimit() {
         Radio cond = new Radio();
 
-        cond.setCurrentVolume(10);
+        cond.setCurrentVolume(101);
         cond.setReduceVolume();
 
         int actual = cond.getReduceVolume();
