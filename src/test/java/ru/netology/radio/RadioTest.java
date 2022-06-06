@@ -17,7 +17,7 @@ public class RadioTest {
         assertEquals(expected, actual);
     }
 
-    @Test
+   @Test
     void currentStationNegative() {
         Radio cond = new Radio();
 
@@ -32,7 +32,7 @@ public class RadioTest {
     void currentStationOverLimit() {
         Radio cond = new Radio();
 
-        cond.setCurrentStation(10);
+        cond.setCurrentStation(11);
 
         int actual = cond.getCurrentStation();
         int expected = 0;
@@ -43,20 +43,22 @@ public class RadioTest {
     void nextStation() {
         Radio cond = new Radio();
 
-        cond.nextStation(1);
+        cond.setCurrentStation(1);
+        cond.setNextStation();
 
-        int actual = cond.getCurrentStation();
+        int actual = cond.getNextStation();
         int expected = 2;
         assertEquals(expected, actual);
     }
 
-    @Test
+   @Test
     void nextStationOverLimit() {
         Radio cond = new Radio();
 
-        cond.nextStation(9);
+        cond.setCurrentStation(10);
+        cond.setNextStation();
 
-        int actual = cond.getCurrentStation();
+        int actual = cond.getNextStation();
         int expected = 0;
         assertEquals(expected, actual);
     }
@@ -65,9 +67,10 @@ public class RadioTest {
     void prevStation() {
         Radio cond = new Radio();
 
-        cond.prevStation(2);
+        cond.setCurrentStation(2);
+        cond.setPrevStation();
 
-        int actual = cond.getCurrentStation();
+        int actual = cond.getPrevStation();
         int expected = 1;
         assertEquals(expected, actual);
     }
@@ -76,10 +79,11 @@ public class RadioTest {
     void prevStationNegative() {
         Radio cond = new Radio();
 
-        cond.prevStation(0);
+        cond.setCurrentStation(0);
+        cond.setPrevStation();
 
-        int actual = cond.getCurrentStation();
-        int expected = 9;
+        int actual = cond.getPrevStation();
+        int expected = 10;
         assertEquals(expected, actual);
     }
 
@@ -87,14 +91,15 @@ public class RadioTest {
     void prevStationLimit() {
         Radio cond = new Radio();
 
-        cond.prevStation(8);
+        cond.setCurrentStation(10);
+        cond.setPrevStation();
 
-        int actual = cond.getCurrentStation();
-        int expected = 7;
+        int actual = cond.getPrevStation();
+        int expected = 9;
         assertEquals(expected, actual);
     }
 
-   @Test
+    @Test
     void currentVolume() {
         Radio cond = new Radio();
 
@@ -129,12 +134,13 @@ public class RadioTest {
 
    @Test
     void increaseVolume() {
-        Radio cond = new Radio();
+       Radio cond = new Radio();
 
-        cond.increaseVolume(9);
+       cond.setCurrentVolume(8);
+       cond.setIncreaseVolume();
 
-        int actual = cond.getCurrentVolume();
-        int expected = 10;
+        int actual = cond.getIncreaseVolume();
+        int expected = 9;
         assertEquals(expected, actual);
     }
 
@@ -142,20 +148,22 @@ public class RadioTest {
     void increaseVolumeOverLimit() {
         Radio cond = new Radio();
 
-        cond.increaseVolume(10);
+        cond.setCurrentVolume(9);
+        cond.setIncreaseVolume();
 
-        int actual = cond.getCurrentVolume();
-        int expected = 10;
+        int actual = cond.getIncreaseVolume();
+        int expected = 9;
         assertEquals(expected, actual);
     }
 
-    @Test
+   @Test
     void reduceVolume() {
         Radio cond = new Radio();
 
-        cond.reduceVolume(1);
+        cond.setCurrentVolume(1);
+        cond.setReduceVolume();
 
-        int actual = cond.getCurrentVolume();
+        int actual = cond.getReduceVolume();
         int expected = 0;
         assertEquals(expected, actual);
     }
@@ -164,10 +172,23 @@ public class RadioTest {
     void reduceVolumeNegative() {
         Radio cond = new Radio();
 
-        cond.reduceVolume(-1);
+        cond.setCurrentVolume(-1);
+        cond.setReduceVolume();
 
-        int actual = cond.getCurrentVolume();
+        int actual = cond.getReduceVolume();
         int expected = 0;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void reduceVolumeLimit() {
+        Radio cond = new Radio();
+
+        cond.setCurrentVolume(9);
+        cond.setReduceVolume();
+
+        int actual = cond.getReduceVolume();
+        int expected = 8;
         assertEquals(expected, actual);
     }
 
@@ -175,9 +196,10 @@ public class RadioTest {
     void reduceVolumeOverLimit() {
         Radio cond = new Radio();
 
-        cond.reduceVolume(11);
+        cond.setCurrentVolume(10);
+        cond.setReduceVolume();
 
-        int actual = cond.getCurrentVolume();
+        int actual = cond.getReduceVolume();
         int expected = 0;
         assertEquals(expected, actual);
     }
